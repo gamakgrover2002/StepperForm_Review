@@ -2,7 +2,7 @@ import React from "react";
 import { Controller, FieldErrors, Control } from "react-hook-form";
 import { Data } from "../model/Data";
 import Autocomplete from "./AutoComplete";
-
+import Input from "./Input";
 interface AddressFormProps {
   control: Control<Data> | undefined;
   errors: FieldErrors<Data>;
@@ -12,7 +12,7 @@ interface AddressFormProps {
 
 const AddressForm: React.FC<AddressFormProps> = ({
   control,
-  readOnly = false,
+
   errors,
   handleAddressSelect,
 }) => {
@@ -25,12 +25,11 @@ const AddressForm: React.FC<AddressFormProps> = ({
         control={control}
         render={({ field }) => (
           <>
-            <input
-              readOnly={readOnly}
+            <Input
               className={`form-input ${errors.city ? "error" : ""}`}
               type="text"
               placeholder="City"
-              {...field}
+              field={field}
             />
             {errors.city && (
               <p className="error-message">{errors.city.message}</p>
@@ -44,12 +43,11 @@ const AddressForm: React.FC<AddressFormProps> = ({
         control={control}
         render={({ field }) => (
           <>
-            <input
-              readOnly={readOnly} // Apply readOnly here
+            <Input
               className={`form-input ${errors.state ? "error" : ""}`}
               type="text"
               placeholder="State"
-              {...field}
+              field={field}
             />
             {errors.state && (
               <p className="error-message">{errors.state.message}</p>
@@ -63,12 +61,11 @@ const AddressForm: React.FC<AddressFormProps> = ({
         control={control}
         render={({ field }) => (
           <>
-            <input
-              readOnly={readOnly} // Apply readOnly here
+            <Input
               className={`form-input ${errors.country ? "error" : ""}`}
               type="text"
               placeholder="Country"
-              {...field}
+              field={field}
             />
             {errors.country && (
               <p className="error-message">{errors.country.message}</p>

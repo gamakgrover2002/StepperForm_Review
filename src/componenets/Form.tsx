@@ -344,6 +344,7 @@ const Form: React.FC = () => {
               ) : (
                 <>
                   <FamilyForm
+                    handleSubmit={handleSubmit}
                     append={append}
                     onSubmit={onSubmit}
                     control={control}
@@ -408,6 +409,7 @@ const Form: React.FC = () => {
             </section>
 
             <button
+              className="form-button edit-button"
               onClick={() => {
                 handleSubmit((data) => {
                   onSubmit(data);

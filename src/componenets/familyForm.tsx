@@ -6,12 +6,11 @@ import {
   FieldArrayWithId,
   UseFormHandleSubmit,
 } from "react-hook-form";
-
+import { Input } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Data } from "../model/Data";
 
 interface FamilyFormProps {
-  readOnly: boolean;
   control: Control<Data> | undefined;
   errors: FieldErrors<Data>;
   fields: FieldArrayWithId<Data, "family", "id">[];
@@ -22,7 +21,6 @@ interface FamilyFormProps {
 }
 
 const FamilyForm: React.FC<FamilyFormProps> = ({
-  readOnly = false,
   control,
   errors,
   fields,
@@ -41,13 +39,13 @@ const FamilyForm: React.FC<FamilyFormProps> = ({
             control={control}
             render={({ field }) => (
               <>
-                <input
+                <Input
                   className={`form-input ${
                     errors.family?.[index]?.name ? "error" : ""
                   }`}
                   type="text"
                   placeholder="Family Name"
-                  {...field}
+                  {...field} // Spread the field props here
                 />
                 {errors.family?.[index]?.name && (
                   <p className="error-message">
@@ -80,7 +78,6 @@ const FamilyForm: React.FC<FamilyFormProps> = ({
                   type="number"
                   placeholder="Family Age"
                   {...field}
-                  readOnly={readOnly} // Apply readOnly here
                 />
                 {errors.family?.[index]?.age && (
                   <p className="error-message">
@@ -112,8 +109,7 @@ const FamilyForm: React.FC<FamilyFormProps> = ({
                   }`}
                   type="text"
                   placeholder="Family Contact"
-                  {...field}
-                  readOnly={readOnly} // Apply readOnly here
+                  {...field} // Spread the field props here
                 />
                 {errors.family?.[index]?.contact && (
                   <p className="error-message">
@@ -123,34 +119,32 @@ const FamilyForm: React.FC<FamilyFormProps> = ({
               </>
             )}
           />
-          {!readOnly && (
-            <DeleteIcon
-              className="form-button remove-button"
-              onClick={() => {
-                if (fields.length > 1) {
-                  remove(index);
-                } else {
-                  alert("Can't remove the last field. Must fill at least one.");
-                }
-              }}
-            />
-          )}
+
+          <DeleteIcon
+            className="form-button remove-button"
+            onClick={() => {
+              if (fields.length > 1) {
+                remove(index);
+              } else {
+                alert("Can't remove the last field. Must fill at least one.");
+              }
+            }}
+          />
         </div>
       ))}
-      {!readOnly && (
-        <button
-          type="button"
-          className="form-button add-button"
-          onClick={() => {
-            handleSubmit((data: Data) => {
-              onSubmit(data);
-              append({ name: "", age: "", contact: "" });
-            })();
-          }}
-        >
-          Add
-        </button>
-      )}
+
+      <button
+        type="button"
+        className="form-button add-button"
+        onClick={() => {
+          handleSubmit((data: Data) => {
+            onSubmit(data);
+            append({ name: "", age: "", contact: "" });
+          })();
+        }}
+      >
+        Add
+      </button>
     </div>
   );
 };

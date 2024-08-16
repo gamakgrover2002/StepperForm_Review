@@ -1,6 +1,7 @@
 import React from "react";
 import { Controller, Control, FieldErrors } from "react-hook-form";
 import { Data } from "../model/Data";
+import Input from "./Input";
 
 interface PersonalFormProps {
   control: Control<Data> | undefined;
@@ -16,11 +17,11 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ control, errors }) => {
         control={control}
         render={({ field }) => (
           <>
-            <input
+            <Input
               className={`form-input ${errors.name ? "error" : ""}`}
               type="text"
               placeholder="Name"
-              {...field}
+              field={field}
             />
             {errors.name && (
               <p className="error-message">{errors.name.message}</p>
@@ -44,11 +45,11 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ control, errors }) => {
         control={control}
         render={({ field }) => (
           <>
-            <input
+            <Input
               className={`form-input ${errors.age ? "error" : ""}`}
               type="number"
               placeholder="Age"
-              {...field}
+              field={field}
             />
             {errors.age && (
               <p className="error-message">{errors.age.message}</p>
@@ -68,11 +69,11 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ control, errors }) => {
         control={control}
         render={({ field }) => (
           <>
-            <input
+            <Input
               className={`form-input ${errors.email ? "error" : ""}`}
               type="text"
               placeholder="Email"
-              {...field}
+              field={field}
             />
             {errors.email && (
               <p className="error-message">{errors.email.message}</p>
@@ -96,11 +97,11 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ control, errors }) => {
         control={control}
         render={({ field }) => (
           <>
-            <input
+            <Input
               className={`form-input ${errors.contact ? "error" : ""}`}
               type="text"
               placeholder="Contact Number"
-              {...field}
+              field={field}
             />
             {errors.contact && (
               <p className="error-message">{errors.contact.message}</p>
