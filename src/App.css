@@ -1,14 +1,14 @@
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --success-color: #28a745;
-  --danger-color: #dc3545;
-  --error-color: red;
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --success-color: #27ae60;
+  --danger-color: #e74c3c;
+  --error-color: #c0392b;
   --font-family: Arial, sans-serif;
   --border-radius: 8px;
   --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   --padding: 20px;
-  --input-padding: 10px;
+  --input-padding: 12px;
   --font-size: 16px;
 }
 
@@ -53,24 +53,26 @@ body {
 
 .form-button,
 .button {
-  padding: var(--input-padding) 20px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   color: #fff;
   background-color: var(--primary-color);
   cursor: pointer;
   transition: background-color 0.3s;
-  font-size: var(--font-size);
+  font-size: 16px;
+  margin: 5px;
+  width: 10vw;
 }
 
 .form-button:hover,
 .button:hover {
-  background-color: #0056b3;
+  background-color: #2980b9;
 }
 
 .form-button:active,
 .button:active {
-  background-color: #004085;
+  background-color: #1f6d9d;
 }
 
 .button.next {
@@ -102,7 +104,7 @@ body {
 
 .autocomplete-input {
   width: 100%;
-  padding: 8px;
+  padding: 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: var(--font-size);
@@ -131,7 +133,7 @@ body {
 }
 
 .autocomplete-suggestion {
-  padding: 8px;
+  padding: 12px;
   cursor: pointer;
   font-size: var(--font-size);
 }
@@ -155,7 +157,7 @@ body {
   align-items: center;
   border: 2px dashed #ddd;
   padding: var(--padding);
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   background-color: #f9f9f9;
   text-align: center;
@@ -174,10 +176,9 @@ body {
 .image-preview img {
   max-width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
 }
 
-/* Media Queries */
 @media (max-width: 600px) {
   .form {
     padding: 15px;
@@ -185,13 +186,13 @@ body {
 
   .form-input,
   .autocomplete-input {
-    padding: 8px;
+    padding: 10px;
   }
 
   .form-button,
   .button {
     font-size: 14px;
-    padding: 8px 15px;
+    padding: 8px 16px;
   }
 
   .drop-area {
@@ -202,4 +203,37 @@ body {
     width: 150px;
     height: 150px;
   }
+}
+
+.form-button.next-button {
+  background-color: var(--success-color);
+}
+
+.form-button.prev-button {
+  background-color: var(--primary-color);
+}
+
+.form-button.add-button {
+  background-color: var(--success-color);
+}
+
+.form-button.submit-button {
+  background-color: var(--danger-color);
+}
+
+.form-button.form-button-cancel {
+  background-color: #7f8c8d;
+}
+
+.form-button.form-button-update {
+  background-color: var(--primary-color);
+}
+.form-submitted {
+  padding: 20px;
+  border: 2px solid #4caf50;
+  background-color: #dff0d8;
+  color: #3c763d;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
 }

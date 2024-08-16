@@ -5,7 +5,7 @@ export const useMultiForm = (steps: number) => {
 
   const nextPage = () => {
     setCurrentStep((index) => {
-      if (index >= steps) {
+      if (index > steps) {
         return index;
       }
       return index + 1;
@@ -13,7 +13,7 @@ export const useMultiForm = (steps: number) => {
   };
   const prevPage = () => {
     setCurrentStep((index) => {
-      if (index <= 0) {
+      if (index <= 1) {
         return index;
       }
       return index - 1;
