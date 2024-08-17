@@ -38,7 +38,6 @@ const UploadForm: React.FC<UploadFormProps> = ({
       const imageUrl = URL.createObjectURL(file);
       setSelectedImage(imageUrl);
 
-      // Clean up the URL when the component unmounts
       return () => {
         URL.revokeObjectURL(imageUrl);
       };
@@ -46,7 +45,6 @@ const UploadForm: React.FC<UploadFormProps> = ({
   };
 
   useEffect(() => {
-    // Cleanup URL on component unmount
     return () => {
       if (
         selectedImage &&
