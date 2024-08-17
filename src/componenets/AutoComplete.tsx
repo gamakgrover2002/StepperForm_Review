@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 
 interface AutocompleteProps {
   onSelect: (address: string) => void;
+  readonly?: boolean;
 }
 
-const Autocomplete: React.FC<AutocompleteProps> = ({ onSelect }) => {
+const Autocomplete: React.FC<AutocompleteProps> = ({ onSelect, readonly }) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>("");
   const autocompleteService =
@@ -25,7 +26,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ onSelect }) => {
     const value = event.target.value;
     setInputValue(value);
 
-    if (value.length > 2) {
+    if (value.length > 2 && !readonly) {
       autocompleteService.current?.getPlacePredictions(
         { input: value },
         (predictions, status) => {
@@ -49,7 +50,6 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ onSelect }) => {
   const handleSelect = (suggestion: string) => {
     setInputValue(suggestion);
     setSuggestions([]);
-
     onSelect(suggestion); // Pass the selected address string to the parent
   };
 
@@ -61,8 +61,10 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ onSelect }) => {
         onChange={handleChange}
         placeholder="Enter address"
         className="autocomplete-input"
+        // Disable user input if readonly is true
+        disabled={readonly}
       />
-      {suggestions.length > 0 && (
+      {suggestions.length > 0 && !readonly && (
         <ul className="autocomplete-suggestions">
           {suggestions.map((suggestion, index) => (
             <li

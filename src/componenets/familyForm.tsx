@@ -18,6 +18,7 @@ interface FamilyFormProps {
   append: (value: { name: string; age: string; contact: string }) => void;
   onSubmit: (data: Data) => void;
   handleSubmit: UseFormHandleSubmit<Data, undefined>;
+  readonly?: boolean;
 }
 
 const FamilyForm: React.FC<FamilyFormProps> = ({
@@ -28,6 +29,7 @@ const FamilyForm: React.FC<FamilyFormProps> = ({
   append,
   onSubmit,
   handleSubmit,
+  readonly,
 }) => {
   return (
     <div className="step step-2">
@@ -45,7 +47,8 @@ const FamilyForm: React.FC<FamilyFormProps> = ({
                   }`}
                   type="text"
                   placeholder="Family Name"
-                  {...field} // Spread the field props here
+                  {...field}
+                  readOnly={readonly}
                 />
                 {errors.family?.[index]?.name && (
                   <p className="error-message">
@@ -71,13 +74,14 @@ const FamilyForm: React.FC<FamilyFormProps> = ({
             control={control}
             render={({ field }) => (
               <>
-                <input
+                <Input
                   className={`form-input ${
                     errors.family?.[index]?.age ? "error" : ""
                   }`}
                   type="number"
                   placeholder="Family Age"
                   {...field}
+                  readOnly={readonly}
                 />
                 {errors.family?.[index]?.age && (
                   <p className="error-message">
@@ -103,13 +107,14 @@ const FamilyForm: React.FC<FamilyFormProps> = ({
             control={control}
             render={({ field }) => (
               <>
-                <input
+                <Input
                   className={`form-input ${
                     errors.family?.[index]?.contact ? "error" : ""
                   }`}
                   type="text"
                   placeholder="Family Contact"
-                  {...field} // Spread the field props here
+                  {...field}
+                  readOnly={readonly}
                 />
                 {errors.family?.[index]?.contact && (
                   <p className="error-message">

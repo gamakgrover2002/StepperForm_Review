@@ -6,9 +6,14 @@ import Input from "./Input";
 interface PersonalFormProps {
   control: Control<Data> | undefined;
   errors: FieldErrors<Data>;
+  readonly?: boolean;
 }
 
-const PersonalForm: React.FC<PersonalFormProps> = ({ control, errors }) => {
+const PersonalForm: React.FC<PersonalFormProps> = ({
+  control,
+  errors,
+  readonly,
+}) => {
   return (
     <div className="step step-1">
       <Controller
@@ -22,6 +27,7 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ control, errors }) => {
               type="text"
               placeholder="Name"
               field={field}
+              readOnly={readonly}
             />
             {errors.name && (
               <p className="error-message">{errors.name.message}</p>
@@ -50,6 +56,7 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ control, errors }) => {
               type="number"
               placeholder="Age"
               field={field}
+              readOnly={readonly}
             />
             {errors.age && (
               <p className="error-message">{errors.age.message}</p>
@@ -74,6 +81,7 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ control, errors }) => {
               type="text"
               placeholder="Email"
               field={field}
+              readOnly={readonly}
             />
             {errors.email && (
               <p className="error-message">{errors.email.message}</p>
@@ -102,6 +110,7 @@ const PersonalForm: React.FC<PersonalFormProps> = ({ control, errors }) => {
               type="text"
               placeholder="Contact Number"
               field={field}
+              readOnly={readonly}
             />
             {errors.contact && (
               <p className="error-message">{errors.contact.message}</p>

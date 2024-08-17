@@ -5,7 +5,8 @@ interface InputProps {
   type: string;
   className: string;
   placeholder: string;
-  field: ControllerRenderProps<Data, className>;
+  field: ControllerRenderProps<Data, keyof Data>;
+  readOnly?: boolean; // Updated to camelCase
 }
 
 const Input: React.FC<InputProps> = ({
@@ -13,13 +14,19 @@ const Input: React.FC<InputProps> = ({
   className,
   placeholder,
   field,
+  readOnly = false, // Updated to camelCase
 }) => {
+  const stringValue =
+    typeof field.value === "string" ? field.value : JSON.stringify(field.value);
+
   return (
     <input
       type={type}
       className={className}
       placeholder={placeholder}
       {...field}
+      value={stringValue} // Ensure the value is a string
+      readOnly={readOnly} // Updated to camelCase
     />
   );
 };

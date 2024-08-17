@@ -7,7 +7,7 @@ interface AddressFormProps {
   control: Control<Data> | undefined;
   errors: FieldErrors<Data>;
   handleAddressSelect: (val: string) => void;
-  readOnly?: boolean; // Added readOnly prop here
+  readonly?: boolean;
 }
 
 const AddressForm: React.FC<AddressFormProps> = ({
@@ -15,10 +15,12 @@ const AddressForm: React.FC<AddressFormProps> = ({
 
   errors,
   handleAddressSelect,
+  readonly,
 }) => {
   return (
     <div className="step step-3">
-      <Autocomplete onSelect={handleAddressSelect} />
+      <Autocomplete readonly={readonly} onSelect={handleAddressSelect} />
+
       <Controller
         name="city"
         rules={{ required: "City is required" }}
@@ -30,6 +32,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
               type="text"
               placeholder="City"
               field={field}
+              readOnly={readonly}
             />
             {errors.city && (
               <p className="error-message">{errors.city.message}</p>
@@ -48,6 +51,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
               type="text"
               placeholder="State"
               field={field}
+              readOnly={readonly}
             />
             {errors.state && (
               <p className="error-message">{errors.state.message}</p>
@@ -66,6 +70,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
               type="text"
               placeholder="Country"
               field={field}
+              readOnly={readonly}
             />
             {errors.country && (
               <p className="error-message">{errors.country.message}</p>

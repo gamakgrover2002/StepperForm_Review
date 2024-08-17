@@ -315,7 +315,11 @@ const Form: React.FC = () => {
                 <PersonalForm control={control} errors={errors} />
               ) : (
                 <>
-                  <PersonalForm control={control} errors={errors} />
+                  <PersonalForm
+                    control={control}
+                    errors={errors}
+                    readonly={true}
+                  />
                   <button
                     className="form-button edit-button"
                     type="button"
@@ -333,7 +337,7 @@ const Form: React.FC = () => {
               <h3>Family Information</h3>
               {editSection === "family" ? (
                 <FamilyForm
-                  readOnly={true}
+                  handleSubmit={handleSubmit}
                   control={control}
                   errors={errors}
                   fields={fields}
@@ -345,6 +349,7 @@ const Form: React.FC = () => {
                 <>
                   <FamilyForm
                     handleSubmit={handleSubmit}
+                    readonly={true}
                     append={append}
                     onSubmit={onSubmit}
                     control={control}
@@ -369,7 +374,6 @@ const Form: React.FC = () => {
               <h3>Address Information</h3>
               {editSection === "address" ? (
                 <AddressForm
-                  readOnly={true}
                   control={control}
                   errors={errors}
                   handleAddressSelect={handleAddressSelect}
@@ -377,6 +381,7 @@ const Form: React.FC = () => {
               ) : (
                 <>
                   <AddressForm
+                    readonly={true}
                     control={control}
                     errors={errors}
                     handleAddressSelect={handleAddressSelect}
